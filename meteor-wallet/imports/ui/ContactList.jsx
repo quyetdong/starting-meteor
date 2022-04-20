@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { ContactFormsCollection } from '../api/contactForms';
+import { ContactFormsCollection } from '../api/ContactForms';
 
 export const ContactList = () => {
   const contactList = useTracker(() => {

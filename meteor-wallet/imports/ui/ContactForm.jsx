@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ContactFormsCollection } from "../api/contactForms";
 
 export const ContactForm = () => {
   const [name, setName] = useState("");
@@ -19,14 +18,24 @@ export const ContactForm = () => {
   };
 
   const saveContact = (e) => {
-    ContactFormsCollection.insert({
-      name,
-      email,
-      imageUrl,
-    });
-    setName("")
-    setEmail("")
-    setImageUrl("")
+    // ContactFormsCollection.insert({
+    //   name,
+    //   email,
+    //   imageUrl,
+    // });
+    Meteor.call(
+      "contact.insert",
+      { name, email, imageUrl },
+      (errorResponse) => {
+        if (errorResponse) {
+          alert(errorResponse.error);
+        } else {
+          setName("");
+          setEmail("");
+          setImageUrl("");
+        }
+      }
+    );
   };
 
   return (
@@ -37,11 +46,21 @@ export const ContactForm = () => {
       </div>
       <div>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" onChange={changeEmail} value={email}></input>
+        <input
+          type="email"
+          id="email"
+          onChange={changeEmail}
+          value={email}
+        ></input>
       </div>
       <div>
         <label htmlFor="imageUrl">Image Url</label>
-        <input type="text" id="imageUrl" onChange={changeImageUrl} value={imageUrl}></input>
+        <input
+          type="text"
+          id="imageUrl"
+          onChange={changeImageUrl}
+          value={imageUrl}
+        ></input>
       </div>
       <div>
         <button type="button" onClick={saveContact}>
