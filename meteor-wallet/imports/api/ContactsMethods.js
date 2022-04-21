@@ -1,4 +1,4 @@
-import { ContactFormsCollection } from './ContactForms'
+import { ContactsCollection } from './ContactsCollection'
 
 Meteor.methods({
   'contact.insert'({
@@ -10,10 +10,25 @@ Meteor.methods({
       throw new Meteor.Error('Name is required.');
     }
 
-    ContactFormsCollection.insert({
+    return ContactsCollection.insert({
       name,
       email,
       imageUrl,
+      createdAt: new Date()
+    });
+  },
+})
+
+Meteor.methods({
+  'contact.remove'({
+    contactId
+  }) {
+    if (!contactId) {
+      throw new Meteor.Error('Contact id should not be empty.');
+    }
+
+    return ContactsCollection.remove({
+      _id: contactId
     });
   },
 })

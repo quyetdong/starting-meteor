@@ -1,11 +1,16 @@
 import React from 'react';
 import { ContactForm } from './ContactForm.jsx';
 import { ContactList } from './ContactList.jsx';
+import { Header } from './Header.jsx';
 
 export const App = () => (
   <div>
-    <h1 className='text-gray-500'>Contact Form</h1>
-    <ContactForm />
-    <ContactList />
+    <Header />
+    <div className="min-h-full">
+      <div className="max-w-4xl mx-auto p-2">
+        <ContactForm />
+        <ContactList />
+      </div>
+    </div>
   </div>
 );
