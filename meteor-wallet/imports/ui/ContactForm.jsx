@@ -28,6 +28,7 @@ export const ContactForm = () => {
       "contact.insert",
       { name, email, imageUrl },
       (errorResponse, data) => {
+        console.log(errorResponse)
         if (errorResponse) {
           showMessage({ message: errorResponse.error, setMessage: setError });
         } else {
