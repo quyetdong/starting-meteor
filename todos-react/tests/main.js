@@ -1,9 +1,9 @@
 import assert from "assert";
 
-describe("hello-app", function () {
+describe("todos-react", function () {
   it("package.json has correct name", async function () {
     const { name } = await import("../package.json");
-    assert.strictEqual(name, "hello-app");
+    assert.strictEqual(name, "todos-react");
   });
 
   if (Meteor.isClient) {

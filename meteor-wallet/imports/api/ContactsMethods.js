@@ -28,4 +28,17 @@ Meteor.methods({
       _id: contactId,
     });
   },
+  "contact.archive"({ contactId }) {
+    check(contactId, String);
+    if (!contactId) {
+      throw new Meteor.Error("Contact id should not be empty.");
+    }
+
+    return ContactsCollection.update(
+      {
+        _id: contactId,
+      },
+      { $set: { archive: true } }
+    );
+  },
 });
